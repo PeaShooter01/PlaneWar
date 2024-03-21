@@ -29,14 +29,16 @@ public class HeroMove : MonoBehaviour
         {
             GameObject.Find("Text1").GetComponent<Text>().setText("Hero Control Mode:Keyboard");
             p += ((mHeroSpeed* Time.smoothDeltaTime) * transform.up);
-            if (Input.GetKey(KeyCode.W))
+            if (Input.GetKey(KeyCode.W)||Input.GetKey(KeyCode.UpArrow))
                 mHeroSpeed+=0.1f;
-            if (Input.GetKey(KeyCode.S))
+            if (Input.GetKey(KeyCode.S)||Input.GetKey(KeyCode.DownArrow))
                 mHeroSpeed-=0.1f;
-            if (Input.GetKey(KeyCode.A))
+            if (Input.GetKey(KeyCode.A)||Input.GetKey(KeyCode.LeftArrow))
                 transform.Rotate(transform.forward,  mHeroRotateSpeed * Time.smoothDeltaTime);
-            if (Input.GetKey(KeyCode.D))
+            if (Input.GetKey(KeyCode.D)||Input.GetKey(KeyCode.RightArrow))
                 transform.Rotate(transform.forward, -mHeroRotateSpeed * Time.smoothDeltaTime);
+            if(mHeroSpeed<0f)
+                mHeroSpeed=0f;
         }
         CameraSupport s = Camera.main.GetComponent<CameraSupport>();
         if (s != null)
